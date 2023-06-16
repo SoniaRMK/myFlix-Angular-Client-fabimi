@@ -126,8 +126,6 @@ private handleError(error: HttpErrorResponse): any {
     );
   }
 
-
-
   isFavMovie(movieId: string): boolean {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     return user.FavoriteMovies.indexOf(movieId) >= 0;
