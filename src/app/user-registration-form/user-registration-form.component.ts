@@ -1,7 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import userRegistartionService, { FetchApiDataService } from '../fetch-api-data.service';
+import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+
+
+
 
 @Component({
   selector: 'app-user-registration-form',
@@ -21,16 +24,24 @@ export class UserRegistrationFormComponent implements OnInit {
 ngOnInit(): void{
 }
 registerUser(): void {
-this.fetchApiData.userRegistration(this.userData).subscribe((response) =>  {
-  
-  this.dialogRef.close(); // This will close the modal on success!
-  this.snackBar.open(response,'OK', {
-    duration: 2000
-  });
-}, (response) => {
-  this.snackBar.open(response ,'OK', {
-    duration: 2000
-  });
-});
+  this.fetchApiData.userRegistration(this.userData).subscribe(
+    (response) => {
+
+            // Logic for a successful user registration goes here! (To be implemented)
+      console.log(response);
+      console.log(this.userData);
+      this.dialogRef.close(); // Close the modal on success
+      this.snackBar.open('User registered successfully!', 'OK', {
+        duration: 2000
+      });
+    },
+    (response) => {
+      console.log(response);
+      this.snackBar.open('Error occurred during user registration.', 'OK', {
+        duration: 2000
+      });
+    }
+  );
+};
 }
-}
+
