@@ -39,7 +39,7 @@ export class UserLoginFormComponent  implements OnInit{
       });
     }, (result) => {
       console.log(result);
-      this.snackBar.open(result, 'OK', {
+      this.snackBar.open('An Error occured during the Login Process', 'OK', {
         duration: 2000
       });
     });

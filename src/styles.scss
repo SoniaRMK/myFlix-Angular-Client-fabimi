@@ -32,3 +32,5 @@ $myFlix-Angular-client-theme: mat.define-light-theme((
 // that you are using.
 @include mat.all-component-themes($myFlix-Angular-client-theme);
 
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
