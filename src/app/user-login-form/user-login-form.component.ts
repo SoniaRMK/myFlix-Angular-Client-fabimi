@@ -16,7 +16,7 @@ export class UserLoginFormComponent  implements OnInit{
   // This is the default value for the input fields
   @Input() userData = { Username: '', Password: '' };
 
-  // These are public so they can be accessed from the template
+ 
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<UserLoginFormComponent>,
@@ -26,22 +26,31 @@ export class UserLoginFormComponent  implements OnInit{
   ngOnInit(): void {
   }
 
+  /**
+    *@description This is the function responsible for sending the form inputs to the backend
+    * @method loginUser
+    * @returns confirmation of login success or failure
+    * @memberof UserLoginFormComponent
+  * */
   loginUser(): void {
-    this.fetchApiData.userLogin(this.userData).subscribe((result) => {
-      // Logic for a successful user login goes here! (To be implemented)
-      //
-      this.dialogRef.close();
-      localStorage.setItem('user', result.user.Username);
-      localStorage.setItem('token', result.token);
-      console.log(result);
-      this.snackBar.open('User logged in successfully!', 'OK', {
-        duration: 2000
-      });
-    }, (result) => {
-      console.log(result);
-      this.snackBar.open('An Error occured during the Login Process', 'OK', {
-        duration: 2000
-      });
+    this.fetchApiData.userLogin(this.userData).subscribe({
+      next: (result) => {
+        // Logic for a successful user login goes here! (To be implemented)
+        //
+        this.dialogRef.close();
+        localStorage.setItem("user", result.user.Username);
+        localStorage.setItem("token", result.token);
+        console.log(result);
+        this.snackBar.open("User logged in successfully!", "OK", {
+          duration: 2000,
+        });
+      },
+      error: (result) => {
+        console.log(result);
+        this.snackBar.open(result, "OK", {
+          duration: 2000,
+        });
+      },
     });
   }
   

@@ -20,7 +20,8 @@ import { MovieCardComponent } from './movie-card/movie-card.component';
     AppComponent,
     UserRegistrationFormComponent,
     UserLoginFormComponent,
-    MovieCardComponent
+    MovieCardComponent,
+    
   ],
   imports: [
     HttpClientModule,

@@ -15,7 +15,13 @@ ngOnInit (): void {
 }
 
 
-
+/**
+ * 
+ * @method getMovies
+ * @description gets the list of movies from the API
+ * @returns list of movies
+ * @memberof MovieCardComponent
+ */
 getMovies() : void {
   this.fetchApiData.getAllMovies().subscribe((resp : any) => {
 this.movies = resp; 
