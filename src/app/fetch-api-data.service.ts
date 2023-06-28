@@ -5,7 +5,7 @@ import { Observable, throwError } from 'rxjs';
 
 
 // Declaring the API URL that will provide data for the client app
-const apiUrl = 'https://fabian-movie-api.onrender.com';
+const apiUrl = 'https://fabian-movie-api.onrender.com/';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +20,7 @@ export class FetchApiDataService {
 
   /**
    *@description This is the function that makes the API call for the user registration endpoint 
-   * @param userDetails 
+   *@param userDetails 
    **/
   public userRegistration(userDetails: any): Observable<any> {
     console.log(userDetails);
