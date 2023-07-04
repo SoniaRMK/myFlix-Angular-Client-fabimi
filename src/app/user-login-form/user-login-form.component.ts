@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FetchApiDataService } from '../fetch-api-data.service';
+import { Router } from '@angular/router';
 
 
 
@@ -20,7 +21,10 @@ export class UserLoginFormComponent  implements OnInit{
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<UserLoginFormComponent>,
-    public snackBar: MatSnackBar) { }
+    public snackBar: MatSnackBar,
+    private router: Router
+        ) { }
+   
 
     //ngOnInit is a lifecycle hook that runs when the component initializes. Its main purpose is to fetch the list of movies from the API.
   ngOnInit(): void {
@@ -33,6 +37,7 @@ export class UserLoginFormComponent  implements OnInit{
     * @memberof UserLoginFormComponent
   * */
   loginUser(): void {
+    
     this.fetchApiData.userLogin(this.userData).subscribe({
       next: (result) => {
         // Logic for a successful user login goes here! (To be implemented)
@@ -41,9 +46,14 @@ export class UserLoginFormComponent  implements OnInit{
         localStorage.setItem("user", result.user.Username);
         localStorage.setItem("token", result.token);
         console.log(result);
+        
+
+
         this.snackBar.open("User logged in successfully!", "OK", {
           duration: 2000,
         });
+        this.router.navigate(['movies']);
+        
       },
       error: (result) => {
         console.log(result);
