@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FetchApiDataService} from '../fetch-api-data.service';
 import { DirectorCardComponent } from '../director-card/director-card.component';
+import { GenreCardComponent } from '../genre-card/genre-card.component';
 import { MatDialog} from '@angular/material/dialog';
 
 
@@ -34,9 +35,17 @@ console.log(this.movies);
 return this.movies})
 }
 
-openDirectorDialog(): void {
+openDirectorDialog(director: any): void {
   this.dialog.open(DirectorCardComponent, {
-    width: '500px'
+    width: '500px',
+    data: director,
   });
 }
+
+openGenreDialog(genre: any): void {
+  this.dialog.open(GenreCardComponent, {
+    width: '500px',
+    data: genre,
+  });
+} 
 }

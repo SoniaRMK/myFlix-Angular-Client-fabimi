@@ -9,13 +9,14 @@
             <button
                 mat-button
                 color="primary"
-             (click)="openDirectorDialog()">
+             (click)="openDirectorDialog(movie.Director)">
                 Director
             </button>
             <button
                 mat-button
                 color="primary"
-            >
+                (click)="openGenreDialog(movie.Genre)">
+            
                 Genre 
             </button>
             <button
