@@ -14,16 +14,9 @@ export class DirectorCardComponent {
   
   
   
-  /**
-   * 
-   * @method getMovies
-   * @description gets the list of movies from the API
-   * @returns list of movies
-   * @memberof MovieCardComponent
-   */
+  
   getDirector(directorName: string): void {
-    this.fetchApiData.getDirector(directorName).subscribe(
-      (resp: any) => {
+    this.fetchApiData.getDirector(directorName).subscribe((resp : any) => {
         this.directors = resp;
         console.log(this.directors);
       },
