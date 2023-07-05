@@ -1,27 +1,25 @@
-<div style="display: flex;">
-    <mat-card style="flex: 1 1 auto;">
+<mat-card>
+    <mat-divider>
+    <mat-card-title>{{ director.Name }}</mat-card-title>
     
-    <mat-card-header>
-        <mat-card-title>{{ movie.director.Name }}</mat-card-title>
-      </mat-card-header>
-      
-     
-        <mat-card-actions>
-            <button
-  mat-raised-butto mat-button  color ="primary" >Back</button>
-            <button
-                mat-button
-                color="primary"
-            >
-                Director
-            </button>
-            <button
-                mat-button
-                color="primary"
-            >
-                Synopsis
-            </button>
-            <mat-icon>favorite_border</mat-icon>
-        </mat-card-actions>
-    </mat-card>
-</div>
+    </mat-divider>
+
+<mat-dialog-content>
+      <div><span >Bio</span>: {{ director.Bio }}</div>
+        <div><span>Born</span>: {{ director.Birth }}</div>
+        <div><span>Died</span>: {{ director.Death }}</div>
+
+    </mat-dialog-content>
+    <mat-card-actions>
+      <button
+        class="director-close-button"
+        mat-stroked-button
+        aria-label="Close the genre details button"
+        mat-dialog-close
+        color="primary"
+      >
+        Close
+      </button>
+    </mat-card-actions>
+  </mat-card>
+  
