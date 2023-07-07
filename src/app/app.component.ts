@@ -22,5 +22,8 @@ logOut(): void {
   localStorage.clear();
   
   this.route.navigate(['welcome']);
-
-}}
+}
+goToProfile(): void {
+  this.route.navigate(['users/:Username']);
+}
+}
