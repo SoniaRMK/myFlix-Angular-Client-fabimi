@@ -4,6 +4,8 @@
   <a mat-button (click)="goToProfile()" *ngIf="getToken()">Profile</a>
   <span class="fill-remaining-space"></span>
   <button mat-button *ngIf="getToken()" (click)="logOut()" >Logout</button>
+  <button class="back" ng-hide="path === '/movies'"  mat-mini-fab disabled a routerLink="/movies"><mat-icon>home</mat-icon></button>
+
 </mat-toolbar>
 
 <router-outlet></router-outlet>
