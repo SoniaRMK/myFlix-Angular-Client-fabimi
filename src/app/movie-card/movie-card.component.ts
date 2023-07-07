@@ -3,7 +3,7 @@ import {FetchApiDataService} from '../fetch-api-data.service';
 import { DirectorCardComponent } from '../director-card/director-card.component';
 import { GenreCardComponent } from '../genre-card/genre-card.component';
 import { MatDialog} from '@angular/material/dialog';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-movie-card',
@@ -14,12 +14,14 @@ export class MovieCardComponent {
 movies: any[] = [];
 constructor (
   public fetchApiData: FetchApiDataService,
-  public dialog: MatDialog){}
+  public dialog: MatDialog,
+  private router : Router ){}
+
+
 ngOnInit (): void {
   this.getMovies();
 
 }
-
 
 /**
  * 
@@ -28,6 +30,8 @@ ngOnInit (): void {
  * @returns list of movies
  * @memberof MovieCardComponent
  */
+
+
 getMovies() : void {
 this.fetchApiData.getAllMovies().subscribe((resp : any) => {
 this.movies = resp; 
@@ -48,4 +52,8 @@ openGenreDialog(genre: any): void {
     data: genre,
   });
 } 
+
+gotoUser() {
+  this.router.navigate(['profile']);
+}
 }
