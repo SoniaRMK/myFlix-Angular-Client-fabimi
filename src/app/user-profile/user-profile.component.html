@@ -9,7 +9,7 @@
                     required />
             </mat-form-field>
             <mat-form-field>
-                <input matInput [(ngModel)]="userData.Password" placeholder="Password" type="password" name="{{userData.Password}}"
+                <input matInput [(ngModel)]="userData.Password" placeholder="{{userData.Password}}" type="text" name="password"
                     required />
             </mat-form-field>
             <mat-form-field>
@@ -28,7 +28,9 @@
         </mat-list>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-raised-button (click)="updateUser()" color="primary">edit user</button>
-        <button mat-raised-button (click)="deleteUser()" color="primary">edit user</button>
+        <button mat-raised-button (click)="updateUser()" color="primary">EDIT USER</button>
+        <button mat-raised-button (click)="deleteUser()" color="warn">DELETE USER</button>
+        <span class="fill-remaining-space"></span>
+        <button class="back" mat-fab a routerLink="/movies" color="warn">BACK</button>
     </mat-card-actions>
 </mat-card>
