@@ -4,6 +4,7 @@ import { DirectorCardComponent } from '../director-card/director-card.component'
 import { GenreCardComponent } from '../genre-card/genre-card.component';
 import { MatDialog} from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-movie-card',
@@ -15,7 +16,8 @@ movies: any[] = [];
 constructor (
   public fetchApiData: FetchApiDataService,
   public dialog: MatDialog,
-  private router : Router ){}
+  public router : Router,
+  public snackbar: MatSnackBar ){}
 
 
 ngOnInit (): void {
@@ -54,6 +56,21 @@ openGenreDialog(genre: any): void {
 } 
 
 gotoUser() {
-  this.router.navigate(['profile']);
+  this.router.navigate(['users/:Username']);
 }
-}
+
+
+addFavorite(movieId: string): void {
+  this.fetchApiData.addFavMovie(movieId).subscribe((resp: any) => {
+    console.log(resp);
+    let favs = resp.FavoriteMovies;
+    localStorage.setItem('FavoriteMovies', favs);
+    this.snackbar.open('Added to favorites!', 'OK', {
+      duration: 2000
+    });
+  });
+
+
+
+
+}}
