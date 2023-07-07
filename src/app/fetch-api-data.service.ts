@@ -117,7 +117,19 @@ export class FetchApiDataService {
       );
   }
 
-
+getUser (user: any): Observable<any> {
+  const token = localStorage.getItem('token');
+  return this.http
+    .get(apiUrl + 'users/' + user, {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + token,
+      }),
+    })
+    .pipe(
+      map(this.extractResponseData),
+      catchError(this.handleError)
+    );
+}
   /**
    * @description This is the function that fetches a single genre from the API
    * @param genreName 
