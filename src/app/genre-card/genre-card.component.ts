@@ -1,4 +1,3 @@
-
 import { MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { Component, OnInit, Inject } from "@angular/core";
 @Component({
@@ -8,9 +7,8 @@ import { Component, OnInit, Inject } from "@angular/core";
 })
 export class GenreCardComponent {
   genre: any = {};
-  movie: any = {}
   constructor(@Inject(MAT_DIALOG_DATA) data: any) {
     this.genre = data;
-    this.movie = data;;
+   
   }
 }
