@@ -9,7 +9,7 @@
                     required />
             </mat-form-field>
             <mat-form-field>
-                <input matInput [(ngModel)]="userData.Password" placeholder="Password" type="password" name="Password"
+                <input matInput [(ngModel)]="userData.Password" placeholder="Password" type="password" name="{{userData.Password}}"
                     required />
             </mat-form-field>
             <mat-form-field>
@@ -20,8 +20,15 @@
                     required />
             </mat-form-field>
         </form>
+        <mat-card-subtitle>Favorite Movies</mat-card-subtitle>
+        <mat-list>
+            <mat-list-item *ngFor="let movie of userData.favoriteMovies">
+              
+            </mat-list-item>
+        </mat-list>
     </mat-card-content>
     <mat-card-actions>
         <button mat-raised-button (click)="updateUser()" color="primary">edit user</button>
+        <button mat-raised-button (click)="deleteUser()" color="primary">edit user</button>
     </mat-card-actions>
 </mat-card>

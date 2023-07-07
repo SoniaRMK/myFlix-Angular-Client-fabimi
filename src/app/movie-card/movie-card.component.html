@@ -27,7 +27,8 @@
             <button mat-button color="primary" (click)="gotoUser()">
                 Profile
             </button>
-            <mat-icon>favorite_border</mat-icon>
+
+            <mat-icon (click)="addFavorite(movie._Id)">favorite_border</mat-icon>
         </mat-card-actions>
     </mat-card>
 </div>
