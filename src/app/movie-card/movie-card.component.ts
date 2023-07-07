@@ -55,10 +55,6 @@ openGenreDialog(genre: any): void {
   });
 } 
 
-gotoUser() {
-  this.router.navigate(['users/:Username']);
-}
-
 
 addFavorite(movieId: string): void {
   this.fetchApiData.addFavMovie(movieId).subscribe((resp: any) => {

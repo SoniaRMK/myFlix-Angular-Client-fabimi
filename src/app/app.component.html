@@ -1,1 +1,9 @@
+
+<mat-toolbar>
+  <span>My Flix</span>
+  <a mat-button routerlink="users/:Username" *ngIf="getToken()">Profile</a>
+  <button mat-button *ngIf="getToken()" (click)="logOut()" >Logout</button>
+
+</mat-toolbar>
+
 <router-outlet></router-outlet>

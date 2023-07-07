@@ -24,6 +24,7 @@ import { SingleMovieComponent } from './single-movie/single-movie.component';
 import { MatExpansionModule} from '@angular/material/expansion';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import {MatListModule} from '@angular/material/list';
+import { MatToolbarModule } from "@angular/material/toolbar";
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
@@ -65,7 +66,8 @@ const appRoutes: Routes = [
     MatIconModule,
     MatDividerModule,
     MatExpansionModule,
-    MatListModule
+    MatListModule,
+    MatToolbarModule
   
 
   ],
