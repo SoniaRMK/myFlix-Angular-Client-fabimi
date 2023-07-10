@@ -182,7 +182,7 @@ getUser (user: any): Observable<any> {
    **/
   isFavMovie(_id: string): boolean {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
-    return user.Fav_Movies.indexOf(_id) >= 0;
+    return user.Fav_Movie.indexOf(_id) >= 0;
   }
 
 /**
