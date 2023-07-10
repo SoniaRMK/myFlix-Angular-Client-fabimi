@@ -28,20 +28,17 @@ export class UserProfileComponent {
 
 
 getProfile(): void {
-  const user = localStorage.getItem('user');
-  this.fetchApiData.getUser(user).subscribe((resp: any) => {
-    this.userData = resp;
+  this.userData = JSON.parse(localStorage.getItem('user') || "{}");
     console.log(this.userData);
    
-  });
+
 }
 
 
   updateUser(): void {
     this.fetchApiData.editUser(this.userData).subscribe({
       next: (result) => {
-        localStorage.setItem('user', JSON.stringify(result));
-        this.router.navigate(['users/:Username']);
+        localStorage.setItem("user", JSON.stringify(result.user));
         console.log(this.userData);
         this.snackBar.open("User successfully updated", "OK", {
           duration: 2000,
