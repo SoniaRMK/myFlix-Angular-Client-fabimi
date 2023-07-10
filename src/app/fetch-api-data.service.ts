@@ -157,12 +157,13 @@ getUser (user: any): Observable<any> {
  * @returns updated user object with new favourite movie
  * @method addFavMovie
  **/
-  addFavMovie(movieId: string): Observable<any> {
+  addFavMovie(_id: string): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     const token = localStorage.getItem('token');
-    user.FavoriteMovies.push(movieId);
+    user.FavoriteMovies = user.FavoriteMovies || []
+    user.FavoriteMovies.push(_id);
     localStorage.setItem('user', JSON.stringify(user));
-    return this.http.post(apiUrl + 'users/' + user.Username + '/movies/' + movieId, {}, {
+    return this.http.post(apiUrl + 'users/' + user.Username + '/movies/' + _id, {}, {
       headers: new HttpHeaders(
         {
           Authorization: 'Bearer ' + token,
@@ -179,9 +180,9 @@ getUser (user: any): Observable<any> {
    * @returns returns true or false
    * @method isFavMovie
    **/
-  isFavMovie(movieId: string): boolean {
+  isFavMovie(_id: string): boolean {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
-    return user.FavoriteMovies.indexOf(movieId) >= 0;
+    return user.Fav_Movies.indexOf(_id) >= 0;
   }
 
 /**

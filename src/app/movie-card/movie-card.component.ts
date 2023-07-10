@@ -17,7 +17,7 @@ constructor (
   public fetchApiData: FetchApiDataService,
   public dialog: MatDialog,
   public router : Router,
-  public snackbar: MatSnackBar ){}
+  public snackBar: MatSnackBar ){}
 
 
 ngOnInit (): void {
@@ -55,18 +55,33 @@ openGenreDialog(genre: any): void {
   });
 } 
 
+addFavorite(_id: string): void {
+  this.fetchApiData.addFavMovie(_id).subscribe((result) => {
 
-addFavorite(movieId: string): void {
-  this.fetchApiData.addFavMovie(movieId).subscribe((resp: any) => {
-    console.log(resp);
-    let favs = resp.FavoriteMovies;
-    localStorage.setItem('FavoriteMovies', favs);
-    this.snackbar.open('Added to favorites!', 'OK', {
+    this.snackBar.open('Movie added to favorites.', 'OK', {
       duration: 2000
     });
   });
+}
 
+/**
+* Calls the check favorite movie method on the API.
+* @param id The movie ID
+*/
+isFavorite(_id: string): boolean {
+  return this.fetchApiData.isFavMovie(_id);
+}
 
+/**
+ * Calls the delete favorite movie method on the API.
+ * @param id The movie ID
+ */
+removeFavorite(_id: string): void {
+  this.fetchApiData.deleteFavoriteMovie(_id).subscribe((result) => {
+    this.snackBar.open('Movie removed from favorites.', 'OK', {
+      duration: 2000
+    });
+  });
+}
 
-
-}}
+}
