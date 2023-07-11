@@ -19,36 +19,41 @@ export class UserRegistrationFormComponent implements OnInit {
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<UserRegistrationFormComponent>,
-    public snackBar: MatSnackBar){}
+    public snackBar: MatSnackBar) { }
 
-ngOnInit(): void{
-}
+  ngOnInit(): void {
+  }
 
-/**
- *@description This is the function responsible for sending the form inputs to the backend
-  * @method registerUser
-  * @returns confirmation of user registration
-  * @memberof UserRegistrationFormComponent
-**/
-registerUser(): void {
-  this.fetchApiData.userRegistration(this.userData).subscribe({
-    next: (result) => {
-      // Logic for a successful user Registation goes here! (To be implemented)
-      this.dialogRef.close();
-      console.log(result);
-      console.log(this.userData);
-      this.snackBar.open("User registered in successfully!", "OK", {
-        duration: 2000,
-      });
-    },
-    error: (result) => {
-      console.log(result);
-      this.snackBar.open('Error occurred during user registration.', 'OK', {
-        duration: 2000,
-      });
-    },
-  });
-}
+  /**
+   *@description This is the function responsible for sending the form inputs to the backend
+    * @method registerUser
+    * @returns confirmation of user registration
+    * @memberof UserRegistrationFormComponent
+  **/
+  registerUser(): void {
+    this.fetchApiData.userRegistration(this.userData).subscribe({
+      next: (result) => {
+        // Logic for a successful user Registation goes here! (To be implemented)
+        this.dialogRef.close();
+        console.log(result);
+        console.log(this.userData);
+
+        this.snackBar.open("User registered in successfully!", "OK", {
+          duration: 2000,
+
+
+        });
+      },
+
+
+      error: (result) => {
+        console.log(result);
+        this.snackBar.open('Error occurred during user registration.', 'OK', {
+          duration: 2000,
+        });
+      },
+    });
+  }
 
 };
 

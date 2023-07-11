@@ -153,16 +153,13 @@ getUser (user: any): Observable<any> {
 
 /**
  * @description This is the function that adds a movie to the list of favourite movies
- * @param movieId 
+ * @param _id 
  * @returns updated user object with new favourite movie
  * @method addFavMovie
  **/
   addFavMovie(_id: string): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     const token = localStorage.getItem('token');
-    user.FavoriteMovies = user.FavoriteMovies || []
-    user.FavoriteMovies.push(_id);
-    localStorage.setItem('user', JSON.stringify(user));
     return this.http.post(apiUrl + 'users/' + user.Username + '/movies/' + _id, {}, {
       headers: new HttpHeaders(
         {
@@ -175,14 +172,35 @@ getUser (user: any): Observable<any> {
   }
 
   /**
+   * @description This is the function that deletes a movie from the list of favourite movies
+   * @param movieId 
+   * @returns  updated user object
+   * @method deleteFavoriteMovie
+   **/
+  deleteFavoriteMovie(movieId: string): Observable<any> {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    const token = localStorage.getItem('token');
+    return this.http.delete(apiUrl + 'users/' + user.Username + '/movies/' + movieId , {
+      headers: new HttpHeaders(
+        {
+          Authorization: 'Bearer ' + token,
+        }),
+     
+    }).pipe(
+      map(this.extractResponseData),
+      catchError(this.handleError)
+    );
+  }
+
+  /**
    *@description This is the function hat asks the API if a movie is in the list of favourite movies
    * @param movieId 
    * @returns returns true or false
    * @method isFavMovie
    **/
-  isFavMovie(_id: string): boolean {
+  isFavMovie(movieId: string): boolean {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
-    return user.Fav_Movie.indexOf(_id) >= 0;
+    return user.Fav_Movie.indexOf(movieId) >= 0;
   }
 
 /**
@@ -226,33 +244,7 @@ getUser (user: any): Observable<any> {
     );
   }
 
-  /**
-   * @description This is the function that deletes a movie from the list of favourite movies
-   * @param movieId 
-   * @returns  updated user object
-   * @method deleteFavoriteMovie
-   **/
-  deleteFavoriteMovie(movieId: string): Observable<any> {
-    const user = JSON.parse(localStorage.getItem('user') || '{}');
-    const token = localStorage.getItem('token');
-
-    const index = user.FavoriteMovies.indexOf(movieId);
-    console.log(index);
-    if (index > -1) { // only splice array when item is found
-      user.FavoriteMovies.splice(index, 1); // 2nd parameter means remove one item only
-    }
-    localStorage.setItem('user', JSON.stringify(user));
-    return this.http.delete(apiUrl + 'users/' + user.Username + '/movies/' + movieId, {
-      headers: new HttpHeaders(
-        {
-          Authorization: 'Bearer ' + token,
-        }),
-      responseType: "text"
-    }).pipe(
-      map(this.extractResponseData),
-      catchError(this.handleError)
-    );
-  }
+  
 
   // Non-typed response extraction
   private extractResponseData(res: any): any {

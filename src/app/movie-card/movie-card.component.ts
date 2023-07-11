@@ -5,6 +5,7 @@ import { GenreCardComponent } from '../genre-card/genre-card.component';
 import { MatDialog} from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-movie-card',
@@ -17,7 +18,8 @@ constructor (
   public fetchApiData: FetchApiDataService,
   public dialog: MatDialog,
   public router : Router,
-  public snackBar: MatSnackBar ){}
+  public snackBar: MatSnackBar,
+ private sanitizer: DomSanitizer ){}
 
 
 ngOnInit (): void {
@@ -34,11 +36,14 @@ ngOnInit (): void {
  */
 
 
-getMovies() : void {
-this.fetchApiData.getAllMovies().subscribe((resp : any) => {
-this.movies = resp; 
-console.log(this.movies);
-return this.movies})
+getMovies(): void {
+  this.fetchApiData.getAllMovies().subscribe((resp: any) => {
+    this.movies = resp.map((movie: any) => ({
+      ...movie,
+      imagePath: this.sanitizer.bypassSecurityTrustResourceUrl(movie.ImagePath),
+    }));
+    console.log(this.movies);
+  });
 }
 
 openDirectorDialog(director: any): void {
@@ -57,7 +62,7 @@ openGenreDialog(genre: any): void {
 
 addFavorite(_id: string): void {
   this.fetchApiData.addFavMovie(_id).subscribe((result) => {
-
+    localStorage.setItem('user', JSON.stringify(result));
     this.snackBar.open('Movie added to favorites.', 'OK', {
       duration: 2000
     });
@@ -76,8 +81,9 @@ isFavorite(_id: string): boolean {
  * Calls the delete favorite movie method on the API.
  * @param id The movie ID
  */
-removeFavorite(_id: string): void {
-  this.fetchApiData.deleteFavoriteMovie(_id).subscribe((result) => {
+removeFavorite(movieId: string): void {
+  this.fetchApiData.deleteFavoriteMovie(movieId).subscribe((result) => {
+    localStorage.setItem('user', JSON.stringify(result));
     this.snackBar.open('Movie removed from favorites.', 'OK', {
       duration: 2000
     });

@@ -1,11 +1,12 @@
 mat-card {
-    margin-top: 10%;
+    margin-top: 12rem;
     align-items: center;
     width: 15rem;
     margin-right: 0.3rem;
     color: #ffffff;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
     background-color: #000000;
+    width: max-content
     
 }
 
@@ -26,4 +27,29 @@ mat-card:hover {
 
 html {
     background-color: #000000;
+}
+
+mat-expansion-panel {
+    position:absolute;
+    background-color: #000000;
+    color: #ffffff;
+    
+
+}
+
+mat-panel-title{
+    color: #ffffff;
+    font-size: smaller;
+    justify-content: center;
+    height: 25px;
+
+}
+
+mat-panel-description{
+    color: #ffffff;
+    font-size: smaller;
+}
+
+mat-expansion-panel-header{
+  height : max-content;
 }
