@@ -36,7 +36,6 @@
           },
           "configurations": {
             "production": {
-              "baseHref": "/Task6.4/",
               "budgets": [
                 {
                   "type": "initial",

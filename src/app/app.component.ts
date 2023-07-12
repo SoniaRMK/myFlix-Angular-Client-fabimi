@@ -24,6 +24,6 @@ export class AppComponent {
     this.route.navigate(['welcome']);
   }
   goToProfile(): void {
-    this.route.navigate(['users/:Username']);
+    this.route.navigate(['profile']);
   }
 }

@@ -39,7 +39,13 @@ export class UserProfileComponent {
  */
 
 getProfile(): void {
-  this.userData = JSON.parse(localStorage.getItem('user') || "{}");
+  const storedUser: any  = JSON.parse(localStorage.getItem('user') || "{}");
+  this.userData.Username = storedUser.Username;
+  this.userData.Password = storedUser.Password;
+  this.userData.Email = storedUser.Email;
+  this.userData.Birthday = storedUser.Birthday;
+  this.userData.FavMovies = storedUser.Fav_Movie;
+
     console.log(this.userData);
    
 
@@ -96,9 +102,10 @@ getProfile(): void {
         const movie = this.movies.find((m: any) => m._id === movieId);
         return {
           id: movie._id,
-          name: movie.title
+          name: movie.Title,
         };
       });
+      console.log(this.favoriteMovies);
     });
   }
 
