@@ -20,10 +20,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { DirectorCardComponent } from './director-card/director-card.component';
 import { GenreCardComponent } from './genre-card/genre-card.component';
 import { MatDividerModule } from '@angular/material/divider';
-import { SingleMovieComponent } from './single-movie/single-movie.component';
-import { MatExpansionModule} from '@angular/material/expansion';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-import {MatListModule} from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from "@angular/material/toolbar";
 
 const appRoutes: Routes = [
@@ -44,9 +43,8 @@ const appRoutes: Routes = [
     WelcomePageComponent,
     DirectorCardComponent,
     GenreCardComponent,
-    SingleMovieComponent,
     UserProfileComponent
-    
+
   ],
 
 
@@ -68,7 +66,7 @@ const appRoutes: Routes = [
     MatExpansionModule,
     MatListModule,
     MatToolbarModule
-  
+
 
   ],
   providers: [],

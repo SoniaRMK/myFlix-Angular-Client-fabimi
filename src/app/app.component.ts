@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MatDialog} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-root',
@@ -9,21 +9,21 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'myFlix-Angular-client';
   constructor(
-     public dialog: MatDialog,
-     private route: Router    
-     ){}
+    public dialog: MatDialog,
+    private route: Router
+  ) { }
 
 
-     getToken(): any {
+  getToken(): any {
     return localStorage.getItem('token');
   }
 
-logOut(): void {
-  localStorage.clear();
-  
-  this.route.navigate(['welcome']);
-}
-goToProfile(): void {
-  this.route.navigate(['users/:Username']);
-}
+  logOut(): void {
+    localStorage.clear();
+
+    this.route.navigate(['welcome']);
+  }
+  goToProfile(): void {
+    this.route.navigate(['users/:Username']);
+  }
 }
