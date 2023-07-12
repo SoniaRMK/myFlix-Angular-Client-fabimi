@@ -97,12 +97,12 @@ export class FetchApiDataService {
       );
   }
 
-/**
- * @description This is the function that fetches a single director from the API
- * @param directorName 
- * @returns director object
- * @method getDirector
- **/
+  /**
+   * @description This is the function that fetches a single director from the API
+   * @param directorName 
+   * @returns director object
+   * @method getDirector
+   **/
   getDirector(directorName: string): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http
@@ -117,19 +117,19 @@ export class FetchApiDataService {
       );
   }
 
-getUser (user: any): Observable<any> {
-  const token = localStorage.getItem('token');
-  return this.http
-    .get(apiUrl + 'users/' + user, {
-      headers: new HttpHeaders({
-        Authorization: 'Bearer ' + token,
-      }),
-    })
-    .pipe(
-      map(this.extractResponseData),
-      catchError(this.handleError)
-    );
-}
+  getUser(user: any): Observable<any> {
+    const token = localStorage.getItem('token');
+    return this.http
+      .get(apiUrl + 'users/' + user, {
+        headers: new HttpHeaders({
+          Authorization: 'Bearer ' + token,
+        }),
+      })
+      .pipe(
+        map(this.extractResponseData),
+        catchError(this.handleError)
+      );
+  }
   /**
    * @description This is the function that fetches a single genre from the API
    * @param genreName 
@@ -151,12 +151,12 @@ getUser (user: any): Observable<any> {
   }
 
 
-/**
- * @description This is the function that adds a movie to the list of favourite movies
- * @param _id 
- * @returns updated user object with new favourite movie
- * @method addFavMovie
- **/
+  /**
+   * @description This is the function that adds a movie to the list of favourite movies
+   * @param _id 
+   * @returns updated user object with new favourite movie
+   * @method addFavMovie
+   **/
   addFavMovie(_id: string): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     const token = localStorage.getItem('token');
@@ -180,12 +180,12 @@ getUser (user: any): Observable<any> {
   deleteFavoriteMovie(movieId: string): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     const token = localStorage.getItem('token');
-    return this.http.delete(apiUrl + 'users/' + user.Username + '/movies/' + movieId , {
+    return this.http.delete(apiUrl + 'users/' + user.Username + '/movies/' + movieId, {
       headers: new HttpHeaders(
         {
           Authorization: 'Bearer ' + token,
         }),
-     
+
     }).pipe(
       map(this.extractResponseData),
       catchError(this.handleError)
@@ -203,12 +203,12 @@ getUser (user: any): Observable<any> {
     return user.Fav_Movie.indexOf(movieId) >= 0;
   }
 
-/**
- * @description This is the function that updates userdata in the database
- * @param updatedUser 
- * @returns updated user object
- * @method editUser
- **/
+  /**
+   * @description This is the function that updates userdata in the database
+   * @param updatedUser 
+   * @returns updated user object
+   * @method editUser
+   **/
   // Making the api call for the edit user endpoint
   editUser(updatedUser: any): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
@@ -224,12 +224,12 @@ getUser (user: any): Observable<any> {
     );
   }
 
- /**
-  * @description This is the function that deletes a user from the database
-  * @returns user object
-  * @method deleteUser
-  * 
-  **/
+  /**
+   * @description This is the function that deletes a user from the database
+   * @returns user object
+   * @method deleteUser
+   * 
+   **/
   deleteUser(): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     const token = localStorage.getItem('token');
@@ -244,7 +244,7 @@ getUser (user: any): Observable<any> {
     );
   }
 
-  
+
 
   // Non-typed response extraction
   private extractResponseData(res: any): any {

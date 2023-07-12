@@ -20,7 +20,9 @@
                     required />
             </mat-form-field>
         </form>
-        <mat-card-subtitle>Favorite Movies</mat-card-subtitle>
+        <mat-card-subtitle>Favorite Movies: <li *ngFor="let movie of movies">
+            {{movie.Title }}
+          </li></mat-card-subtitle>
         
     </mat-card-content>
     <mat-card-actions>

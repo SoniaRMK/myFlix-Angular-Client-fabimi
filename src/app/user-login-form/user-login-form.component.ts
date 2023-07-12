@@ -12,21 +12,21 @@ import { Router } from '@angular/router';
   templateUrl: './user-login-form.component.html',
   styleUrls: ['./user-login-form.component.scss']
 })
-export class UserLoginFormComponent  implements OnInit{
+export class UserLoginFormComponent implements OnInit {
 
   // This is the default value for the input fields
   @Input() userData = { Username: '', Password: '' };
 
- 
+
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<UserLoginFormComponent>,
     public snackBar: MatSnackBar,
     private router: Router
-        ) { }
-   
+  ) { }
 
-    //ngOnInit is a lifecycle hook that runs when the component initializes. Its main purpose is to fetch the list of movies from the API.
+
+  //ngOnInit is a lifecycle hook that runs when the component initializes. Its main purpose is to fetch the list of movies from the API.
   ngOnInit(): void {
   }
 
@@ -37,7 +37,7 @@ export class UserLoginFormComponent  implements OnInit{
     * @memberof UserLoginFormComponent
   * */
   loginUser(): void {
-    
+
     this.fetchApiData.userLogin(this.userData).subscribe({
       next: (result) => {
         // Logic for a successful user login goes here! (To be implemented)
@@ -46,12 +46,12 @@ export class UserLoginFormComponent  implements OnInit{
         localStorage.setItem("user", JSON.stringify(result.user));
         localStorage.setItem("token", result.token);
         console.log(result);
-        
+
         this.snackBar.open("User logged in successfully!", "OK", {
           duration: 2000,
         });
         this.router.navigate(['movies']);
-        
+
       },
       error: (result) => {
         console.log(result);
@@ -61,6 +61,6 @@ export class UserLoginFormComponent  implements OnInit{
       },
     });
   }
-  
+
 
 }

@@ -9,6 +9,6 @@ export class GenreCardComponent {
   genre: any = {};
   constructor(@Inject(MAT_DIALOG_DATA) data: any) {
     this.genre = data;
-   
+
   }
 }
