@@ -13,19 +13,30 @@ export class UserProfileComponent {
 
   user: any = {};
   favoriteMovies: any = [];
+  movies: any[] = [];
 
-  @Input() userData = { Username: '', Password: '', Email: '', Birthday: '' };  // This is the default value for the input fields
+  @Input() userData = { Username: '', Password: '', Email: '', Birthday: '', FavMovies: [] };  // This is the default value for the input fields
 
   // These are public so they can be accessed from the template
   constructor(
     public fetchApiData: FetchApiDataService,
     public snackBar: MatSnackBar,
-    public router: Router) { }
+    public router: Router) { if (!localStorage.getItem("token")) this.router.navigate(['welcome'])
+   }
 
   ngOnInit(): void {
     this.getProfile();
+    this.getMovies();
+    
    }
 
+
+
+/**
+ * @description This method gets the user profile from the database
+ * @method getProfile
+ * @returns user profile
+ */
 
 getProfile(): void {
   this.userData = JSON.parse(localStorage.getItem('user') || "{}");
@@ -34,7 +45,11 @@ getProfile(): void {
 
 }
 
-
+/**
+ * @description This method allows the user to edit their profile
+ * @method editUser
+ * @returns updated user profile
+ */
   updateUser(): void {
     this.fetchApiData.editUser(this.userData).subscribe({
       next: (result) => {
@@ -52,6 +67,12 @@ getProfile(): void {
       }
     });
   }
+
+  /**
+   * @description This method allows the user to delete their profile
+   * @method deleteUser
+   * @returns confirmation of user profile deletion
+   */
   deleteUser(): void {
     this.fetchApiData.deleteUser().subscribe({
       next: (result) => {
@@ -65,12 +86,21 @@ getProfile(): void {
       },
     });
   }
-  getFavoriteMovies(): void {
-    const user = localStorage.getItem('user');
-    this.fetchApiData.getUser(user).subscribe((resp: any) => {
-      this.favoriteMovies = resp.favoriteMovies;
-      console.log(this.favoriteMovies);
-      return this.favoriteMovies;
+
+
+  getMovies(): void {
+    this.fetchApiData.getAllMovies().subscribe((resp: any) => {
+      this.movies = resp;
+      console.log(this.movies);
+      this.favoriteMovies = this.userData.FavMovies.map((movieId: string) => {
+        const movie = this.movies.find((m: any) => m._id === movieId);
+        return {
+          id: movie._id,
+          name: movie.title
+        };
+      });
     });
   }
-}
+
+   
+  }
