@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import {MatDividerModule} from '@angular/material/divider' 
+
 import { DirectorCardComponent } from './director-card.component';
 
 describe('DirectorCardComponent', () => {
