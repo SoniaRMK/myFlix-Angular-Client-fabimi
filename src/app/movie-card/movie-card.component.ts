@@ -19,7 +19,7 @@ constructor (
   public dialog: MatDialog,
   public router : Router,
   public snackBar: MatSnackBar,
- private sanitizer: DomSanitizer ){}
+ private sanitizer: DomSanitizer ) { if (!localStorage.getItem("token")) this.router.navigate(['welcome'])}
 
 
 ngOnInit (): void {
@@ -46,6 +46,14 @@ getMovies(): void {
   });
 }
 
+
+/**
+ * 
+ * @description opens the director dialog
+ * @param director 
+ * @method openDirectorDialog
+ * 
+ */
 openDirectorDialog(director: any): void {
   this.dialog.open(DirectorCardComponent, {
     width: '500px',
@@ -53,13 +61,22 @@ openDirectorDialog(director: any): void {
   });
 }
 
+/**
+ * @description
+ * @param genre
+ * @method openGenreDialog
+ */
 openGenreDialog(genre: any): void {
   this.dialog.open(GenreCardComponent, {
     width: '500px',
     data: genre,
   });
 } 
-
+/**
+ * @description adds movie to favorites
+ * @param _id 
+ * @method addFavorite
+ */
 addFavorite(_id: string): void {
   this.fetchApiData.addFavMovie(_id).subscribe((result) => {
     localStorage.setItem('user', JSON.stringify(result));
@@ -70,7 +87,7 @@ addFavorite(_id: string): void {
 }
 
 /**
-* Calls the check favorite movie method on the API.
+* @description checks if movie is in favorites (calls the isFavMovie method on the fetchApiData service)
 * @param id The movie ID
 */
 isFavorite(_id: string): boolean {
@@ -78,8 +95,9 @@ isFavorite(_id: string): boolean {
 }
 
 /**
- * Calls the delete favorite movie method on the API.
+ * @description removes movie from favorites (calls the deleteFavoriteMovie method on the fetchApiData service)
  * @param id The movie ID
+ * @method removeFavorite
  */
 removeFavorite(movieId: string): void {
   this.fetchApiData.deleteFavoriteMovie(movieId).subscribe((result) => {

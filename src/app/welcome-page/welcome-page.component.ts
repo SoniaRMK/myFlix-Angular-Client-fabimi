@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { UserLoginFormComponent } from '../user-login-form/user-login-form.component';
 import { UserRegistrationFormComponent } from '../user-registration-form/user-registration-form.component';
 import { MatDialog } from '@angular/material/dialog';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-welcome-page',
   templateUrl: './welcome-page.component.html',
@@ -10,18 +10,23 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class WelcomePageComponent {
 
-  constructor(public dialog: MatDialog) {} 
+  constructor(public dialog: MatDialog, private router: Router) { 
+    if (localStorage.getItem('token')) {
+      this.router.navigate(['movies']);
+    }
+  }
   ngOnInit(): void {
   }
+
   openUserRegistrationDialog(): void {
     this.dialog.open(UserRegistrationFormComponent, {
       width: '280px'
-      })
-    
+    })
+
   }
   openUserLoginDialog(): void {
     this.dialog.open(UserLoginFormComponent, {
       width: '280px'
     });
-  } 
+  }
 }
