@@ -6,6 +6,7 @@ import { MatDialog} from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DomSanitizer } from '@angular/platform-browser';
+import { TrailerComponent } from '../trailer/trailer.component';
 
 @Component({
   selector: 'app-movie-card',
@@ -58,6 +59,13 @@ openDirectorDialog(director: any): void {
   this.dialog.open(DirectorCardComponent, {
     width: '500px',
     data: director,
+  });
+}
+
+openTrailerDialog(movie: any): void {
+  this.dialog.open(TrailerComponent, {
+    width: '500px',
+    data: movie,
   });
 }
 

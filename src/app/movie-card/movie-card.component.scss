@@ -9,8 +9,16 @@ mat-card {
     width: max-content
     
 }
+.trailer{
+object-fit: initial;
 
+}
 
+img {
+    width: 15rem;
+    height: 100%;
+    border-radius: 5px 5px 0 0;
+}
 img {
     width: 15rem;
     height: 100%;

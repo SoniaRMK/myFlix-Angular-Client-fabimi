@@ -24,6 +24,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from "@angular/material/toolbar";
+import { YouTubePlayerModule } from '@angular/youtube-player';
+import { TrailerComponent } from './trailer/trailer.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
@@ -43,7 +45,9 @@ const appRoutes: Routes = [
     WelcomePageComponent,
     DirectorCardComponent,
     GenreCardComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    TrailerComponent,
+   
 
   ],
 
@@ -65,7 +69,8 @@ const appRoutes: Routes = [
     MatDividerModule,
     MatExpansionModule,
     MatListModule,
-    MatToolbarModule
+    MatToolbarModule,
+    YouTubePlayerModule
 
 
   ],

@@ -1,0 +1,23 @@
+<mat-card *ngFor="let movie of movies;" style="flex: 1 1 auto;">
+ 
+    <mat-card-title>{{ movies.Title}}</mat-card-title>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <youtube-player videoId="{{movies.Trailerpath}}"> </youtube-player>
+
+
+    <mat-dialog-content>
+    </mat-dialog-content>
+    <mat-card-actions>
+      <button
+        class="director-close-button"
+        mat-stroked-button
+        aria-label="Close the genre details button"
+        mat-dialog-close
+        color="primary"
+      >
+        Close
+      </button>
+    </mat-card-actions>
+  </mat-card>
+  
