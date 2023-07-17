@@ -26,6 +26,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { TrailerComponent } from './trailer/trailer.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
@@ -70,7 +71,9 @@ const appRoutes: Routes = [
     MatExpansionModule,
     MatListModule,
     MatToolbarModule,
-    YouTubePlayerModule
+    YouTubePlayerModule,
+    MatProgressSpinnerModule
+
 
 
   ],
